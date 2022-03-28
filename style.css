@@ -1,0 +1,69 @@
+:root {
+    --primary-clr: #58c6f7;
+    --btn-size: 15rem;
+}
+.background-div {
+    background: var(--primary-clr);
+    height: 100vh;
+    position: relative;
+}
+.reader-btn {
+    position: absolute;
+    background: rgb(255,255,255);
+    width: var(--btn-size);
+    height: var(--btn-size);
+    top: 50%;
+    left: 50%;
+    border: 0;
+    cursor: pointer;
+    transition: all .15s ease-in-out;
+    transform: translateX(-50%) translateY(-50%);
+    border-radius: 50%;
+    box-shadow: -8px 0px 5px 2px #0000004f, 8px 0px 5px 3px #ffffff9e;
+}
+.reader-btn:hover {
+    transform: translateX(-50%) translateY(-50%) scale(98%);
+    box-shadow: -5px 0px 5px 2px #0000004f, 5px 0px 5px 3px #ffffff9e;
+}
+
+.reader-btn svg {
+    width: calc(var(--btn-size) - 55%);
+    /* padding: 1rem; */
+    /* border-radius: 50%; */
+    /* border: 2px solid var(--primary-clr); */
+    transition: all .15s ease-in-out;
+    overflow: overlay;
+    filter: brightness(0.8);
+}
+.reader-btn svg>g {
+    fill: var(--primary-clr);
+    transition: all .15s ease-in-out;
+}
+.reader-btn:hover svg>g {
+    fill: var(--primary-clr);
+}
+
+.pop-up-bg {
+    position: absolute;
+    inset: 0 0 0 0;
+    /* background-color: #00000052; */
+}
+.pop-up-bg .pop-up-box {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 80%;
+    height: 80%;
+    background: rgb(255,255,255);
+}
+
+.close-popup-btn {
+    position: absolute;
+    inset: 0 0 auto auto;
+    z-index: 1;
+}
+
+.hide {
+    display: none;
+}
