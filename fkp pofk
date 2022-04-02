@@ -1,0 +1,46 @@
+[1mdiff --git a/HTML5_qrcode_reader.js b/HTML5_qrcode_reader.js[m
+[1mindex e150983..7cae954 100644[m
+[1m--- a/HTML5_qrcode_reader.js[m
+[1m+++ b/HTML5_qrcode_reader.js[m
+[36m@@ -3,11 +3,11 @@[m
+ function init(html5QrCode) {[m
+     const readCodeBtn = document.querySelector(".reader-btn");[m
+     const closePopUpBtn = document.querySelector(".close-popup-btn");[m
+[31m-    const closePopUpResultBtn = document.querySelector(".close-popup-result-btn");[m
+[31m-    const popUpResultWrapper = document.querySelector(".pop-up-result-wrapper")[m
+[32m+[m[32m    const closePopUpResultBtn = document.querySelector(".close-result-popup-btn");[m
+[32m+[m[32m    const popUpResultWrapper = document.querySelector(".result-pop-up-wrapper")[m
+     const popUpWrapper = document.querySelector(".pop-up-wrapper")[m
+[31m-    const popUpBox = popUpWrapper.querySelector(".pop-up-box")[m
+[31m-    const cameraContent = popUpBox.querySelector(".cameraContent")[m
+[32m+[m[32m    const cameraPopUpBox = popUpWrapper.querySelector(".camera-pop-up-box")[m
+[32m+[m[32m    const cameraContent = cameraPopUpBox.querySelector(".cameraContent")[m
+     // const qrInput = formPopup.querySelector("#qrCode")[m
+     [m
+     readCodeBtn.addEventListener("click", function () {[m
+[1mdiff --git a/index.html b/index.html[m
+[1mindex aeaa508..b12cf3b 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -28,7 +28,7 @@[m
+         </button>[m
+     </main>[m
+     <div class="pop-up-bg pop-up-wrapper hide">[m
+[31m-        <div class="pop-up-box">[m
+[32m+[m[32m        <div class="camera-pop-up-box">[m
+             <div class="cameraContent">[m
+                 <button class="close-popup-btn">X</button>[m
+                 <div id="reader" >[m
+[36m@@ -36,10 +36,10 @@[m
+             </div>[m
+         </div>[m
+     </div>[m
+[31m-    <div class="pop-up-bg pop-up-result-wrapper hide">[m
+[32m+[m[32m    <div class="pop-up-bg result-pop-up-wrapper hide">[m
+         <div class="pop-up-box">[m
+             <div class="reading-result">[m
+[31m-                <button class="close-popup-result-btn">X</button>[m
+[32m+[m[32m                <button class="close-result-popup-btn">X</button>[m
+                 <div class="icon">[m
+                     <img src=""/>[m
+                 </div>[m

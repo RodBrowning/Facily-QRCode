@@ -1,0 +1,7 @@
+
+@media screen and (max-width: 750px) {
+    .pop-up-bg .camera-pop-up-box {
+        width: 95%;
+        min-height: 95%;
+    }
+}
