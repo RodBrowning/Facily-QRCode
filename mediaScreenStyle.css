@@ -5,6 +5,14 @@
         min-height: 95%;
     }
 
+    .pop-up-bg {
+        position: fixed;
+    }
+
+    .result-pop-up-wrapper .result-pop-up-box {
+        height: 90%;
+    }
+
     .close-popup-btn {
         border-top-color: red;
         border-left-color: red;

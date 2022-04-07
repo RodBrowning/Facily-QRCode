@@ -97,14 +97,16 @@ function init(html5QrCode) {
         if(popUpWidth > 590){
             var widthPercentage = 0.5
             var heightPercentage = 0.7
+            var aspectRatio = (popUpWidth / popUpHeight)
         } else {
             var widthPercentage = 0.7
-            var heightPercentage = 0.8
+            var heightPercentage = 0.4
+            var aspectRatio = (popUpHeight / popUpWidth)
         }
         
         return {
             fps: 10,    // Optional, frame per seconds for qr code scanning
-            aspectRatio: (popUpWidth / popUpHeight),
+            aspectRatio,
             qrbox: { 
                 width: (popUpWidth * widthPercentage), 
                 height: (popUpHeight * heightPercentage)
@@ -115,8 +117,8 @@ function init(html5QrCode) {
     function startQrCodeReader(config) {
         Html5Qrcode.getCameras().then(devices => {
             if (devices && devices.length) {
-                var cameraId = devices[0].id;
-                return cameraId
+                var cameraId = devices[1] || devices[0];
+                return cameraId.id
             }
         })
         .then(cameraId => {
@@ -143,8 +145,9 @@ function init(html5QrCode) {
         });
     }
     
+    const URL = "http://localhost:3001/"
     async function consultaQrcodeNaApi(decodedResult) {
-        return await fetch('http://localhost:3001/'+ decodedResult, {
+        return await fetch(URL + decodedResult, {
         method: "GET",
         headers: {"Content-type": "application/json;charset=UTF-8"}})
         .then(response => response.json()) 
@@ -156,7 +159,7 @@ function init(html5QrCode) {
         var _data = {
             codigo: decodedResult
         }    
-        return await fetch('http://localhost:3001/', 
+        return await fetch(URL, 
         {
             method: "POST",
             body: JSON.stringify(_data),
@@ -167,7 +170,7 @@ function init(html5QrCode) {
         .catch(err => console.log(err));
     }
     async function deletaCodigoNaApi(decodedResult) {
-        return await fetch('http://localhost:3001/'+ decodedResult, 
+        return await fetch(URL + decodedResult, 
         {
             method: "DELETE",
             headers: {"Content-type": "application/json; charset=UTF-8"}
