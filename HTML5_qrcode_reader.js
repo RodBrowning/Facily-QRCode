@@ -1,11 +1,11 @@
 function init(html5QrCode) {
     const readCodeBtn = document.querySelector(".reader-btn");
-    const closePopUpBtn = document.querySelector(".close-popup-btn");
+    const closeCameraPopUpBtn = document.querySelector(".close-camera-popup-btn");
     const closePopUpResultBtn = document.querySelector(".close-result-popup-btn");
     const popUpResultWrapper = document.querySelector(".result-pop-up-wrapper")
     const popUpWrapper = document.querySelector(".pop-up-wrapper")
     const cameraPopUpBox = popUpWrapper.querySelector(".camera-pop-up-box")
-    const cameraContent = cameraPopUpBox.querySelector(".cameraContent")
+    const cameraContent = cameraPopUpBox.querySelector(".camera-content")
     // const qrInput = formPopup.querySelector("#qrCode")
     
     readCodeBtn.addEventListener("click", function () {
@@ -13,7 +13,7 @@ function init(html5QrCode) {
         let config = Html5QrCodeConfig(cameraPopUpBox);
         startQrCodeReader(config)
     })
-    closePopUpBtn.addEventListener("click", function () {
+    closeCameraPopUpBtn.addEventListener("click", function () {
         try {
             html5QrCode.stop()
             hidePopup()
@@ -35,12 +35,15 @@ function init(html5QrCode) {
     function hideResult() {
         popUpResultWrapper.classList.add("hide")        
     }
-    function isCodigoNovo(decodedResult) {
+    async function isCodigoNovo(decodedResult) {
         // Consultar se resultado existe no banco
-        // Se não, salvar e retornar true;
-        // Se se sim retorna falso;
+        // Se se sim retorna true;
+        // Se não retorna false;
     }
-    function showResult(tipoDeFeedback) {
+    async function registraCodigo(decodedResult) {
+        // Salva código no banco
+    }
+    function showResult(isCodigoNovo) {
         // Show feedback positivo se true
         // Show feedback negativo se false
         popUpResultWrapper.classList.remove("hide")
@@ -77,9 +80,12 @@ function init(html5QrCode) {
         }).then(cameraId => {
             html5QrCode.start(cameraId, config,
             (decodedText, decodedResult) => {
-                closePopUpBtn.click();
-                let tipoDeFeedback = isCodigoNovo(decodedResult);
-                showResult(tipoDeFeedback);
+                closeCameraPopUpBtn.click();
+                // let isCodigoNovo = await isCodigoNovo(decodedResult);
+                // if (isCodigoNovo) {
+                //     await registraCodigo(decodedResult)
+                // } 
+                // showResult(isCodigoNovo);
                 html5QrCode.stop()
             },
             (errorMessage) => {
@@ -100,3 +106,34 @@ window.onload = function () {
     var html5QrCode = new Html5Qrcode(/* element id */ "reader")
     init(html5QrCode)
 }
+
+// async function consultaQrcodeNaApi(decodedResult) {
+//     return fetch('https://api.github.com/users/manishmshiva', {
+//       method: "GET",
+//       headers: {"Content-type": "application/json;charset=UTF-8"}
+//     })
+//     .then(response => response.json()) 
+//     .then(json => console.log(json)); 
+//     .catch(err => console.log(err));
+// }
+
+// async function salvaCodigoNaApi(decodedResult) {
+//     // data to be sent to the POST request
+//     let _data = {
+//         title: "foo",
+//         body: "bar", 
+//         userId:1
+//     }    
+//     return fetch('https://jsonplaceholder.typicode.com/posts', {
+//         method: "POST",
+//         body: JSON.stringify(_data),
+//         headers: {"Content-type": "application/json; charset=UTF-8"}
+//     })
+//     .then(response => response.json()) 
+//     .then(json => console.log(json));
+//     .catch(err => console.log(err));
+// }
+
+// async function deletaCodigoNaApi(decodedResult) {
+
+// }

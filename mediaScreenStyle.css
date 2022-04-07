@@ -4,4 +4,19 @@
         width: 95%;
         min-height: 95%;
     }
+
+    .close-popup-btn {
+        border-top-color: red;
+        border-left-color: red;
+        border-right-color: white;
+        border-bottom-color: white;
+        padding-top: 7px;
+        padding-left: 10px;
+        inset: auto 0 0 auto;
+        border-radius: 30% 0 0 0 ;
+    }
+
+    .delete-btn {
+        order: 1;
+    }
 }
